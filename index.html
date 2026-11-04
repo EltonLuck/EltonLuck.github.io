@@ -87,11 +87,14 @@
 
     /* ---------- global nav ---------- */
     .utility{
-      position:sticky;top:0;z-index:50;min-height:48px;
-      display:flex;justify-content:flex-end;align-items:center;gap:28px;
-      font-size:12px;letter-spacing:-.01em;color:var(--nav-ink);
+      position:sticky;top:0;z-index:50;
       background:var(--nav-bg);
       backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+    }
+    .utility-inner{
+      width:min(calc(100% - 44px),var(--max));margin:0 auto;min-height:48px;
+      display:flex;justify-content:flex-end;align-items:center;gap:28px;
+      font-size:12px;letter-spacing:-.01em;color:var(--nav-ink);
     }
     .utility a{text-decoration:none;color:var(--nav-ink);padding:4px 0;opacity:.85;transition:opacity .2s ease}
     .utility a:hover,.utility a:focus-visible{opacity:1;outline:none}
@@ -246,7 +249,7 @@
 
     @media(max-width:880px){
       .page{width:min(calc(100% - 36px),var(--max));padding-bottom:56px}
-      .utility{gap:20px}
+      .utility-inner{width:min(calc(100% - 36px),var(--max));gap:20px}
       .hero{padding-top:56px}
       section{scroll-margin-top:64px}
       .projects{grid-template-columns:1fr}
@@ -258,7 +261,7 @@
     }
     @media(max-width:460px){
       .page{width:calc(100% - 28px)}
-      .utility{gap:16px}
+      .utility-inner{width:calc(100% - 28px);gap:16px}
       h1{font-size:2.9rem}
       .hero-tag{margin-bottom:14px}
       .actions{gap:14px}
@@ -279,8 +282,8 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="utility" aria-label="Portfolio sections"><div class="utility-inner"><span class="signal">Available for junior roles</span><a href="#projects">Projects</a><a href="#approach">Approach</a><a href="#contact">Contact</a></div></nav>
   <div class="page">
-    <nav class="utility" aria-label="Portfolio sections"><span class="signal">Available for junior roles</span><a href="#projects">Projects</a><a href="#approach">Approach</a><a href="#contact">Contact</a></nav>
     <main id="main">
       <header class="hero">
         <div class="hero-copy card">
@@ -310,7 +313,7 @@
       </header>
 
       <section id="projects" aria-labelledby="projects-title">
-        <div class="section-head"><span class="section-label">Selected work</span><h2 id="projects-title">Projects</h2><p class="section-intro">Projects where the interesting part is under the surface: data models, authorization boundaries, reliable payments, and code that can survive the second request.</p></div>
+        <div class="section-head"><span class="section-label">Selected work</span><h2 id="projects-title">Projects</h2><p class="section-intro">Projects where the interesting part is under the surface: data models, search, caching, and code that can survive the second request.</p></div>
         <div class="projects">
           <article class="project card featured">
             <div class="project-top"><div class="project-kicker">Current build · Main project</div></div>
@@ -325,12 +328,12 @@
           <article class="project card">
             <div class="project-top"><div class="project-kicker">Full-stack project</div></div>
             <h3>Job Board Platform</h3>
-            <p>A full-stack job marketplace with searchable listings and role-based workflows for employers and job seekers. The next release adds secure authentication and a featured-job purchase flow built around idempotency and a double-entry ledger.</p>
+            <p>A full-stack job marketplace with searchable listings for employers and job seekers, built with a Spring Boot CRUD API and a React frontend.</p>
             <span class="status">In progress</span>
-            <div class="tech" aria-label="Technologies"><span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>JWT</span><span>React</span><span>PayPal Sandbox</span></div>
-            <div class="code-scene" aria-label="Sample architecture sketch"><span class="c">// one business action, safe to retry</span><br><span class="k">POST</span> /featured-jobs/orders<br>Idempotency-Key: <span class="v">request-id</span><br><br><span class="c">EMPLOYER → APPROVAL → CAPTURE</span><br>ledger.debit(<span class="v">$9.99</span>)<br>ledger.credit(<span class="v">$9.99</span>)</div>
+            <div class="tech" aria-label="Technologies"><span>Java</span><span>Spring Boot</span><span>React</span></div>
+            <div class="code-scene" aria-label="How job search works"><span class="c">// search listings</span><br><span class="k">GET</span> /api/jobs?keyword=<span class="v">java</span><br><br><span class="c">// React frontend → Spring Boot API</span><br><span class="v">200</span> [ { title, company, location } ]</div>
             <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="job-detail">Read the engineering notes</button>
-            <div class="detail" id="job-detail"><ul><li>Search is already implemented across the Spring Boot API and React frontend.</li><li>RBAC separates EMPLOYER and SEEKER actions at the authorization boundary.</li><li>A saved AWAITING_APPROVAL state makes payment retries return the same approval flow instead of creating duplicate orders.</li><li>Ledger entries are written only after a completed capture.</li></ul></div>
+            <div class="detail" id="job-detail"><ul><li>Search is implemented across the Spring Boot API and React frontend, so listings can be found by keyword.</li><li>Job listings are managed through a Spring Boot CRUD API, served to a React frontend.</li></ul></div>
           </article>
           <article class="project card">
             <div class="project-top"><div class="project-kicker">Java data tooling</div></div>
