@@ -321,14 +321,14 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <nav class="utility" aria-label="Portfolio sections"><div class="utility-inner"><span class="signal">Available for junior roles</span><a href="#projects">Projects</a><a href="#approach">Approach</a><a href="#contact">Contact</a></div></nav>
+  <nav class="utility" aria-label="Portfolio sections"><div class="utility-inner"><span class="signal">Available for junior roles</span><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div></nav>
   <div class="page">
     <main id="main">
       <header class="hero">
         <div class="hero-copy card">
           <span class="hero-tag">Greater Phoenix Area · Gen-Tech</span>
           <h1>Elton Luckett <span>Backend Software Developer</span></h1>
-          <p class="hero-class">Backend Software Developer | Java, Spring Boot &amp; Python</p>
+          <p class="hero-class">Java · Spring Boot · Python · Enterprise Applications</p>
           <p class="hero-lede">I&rsquo;m a software developer based in the Greater Phoenix area, specializing in <strong>Java backend development and enterprise application solutions</strong>. My background spans IT support, business process automation, and professional software development, where I contribute to application changes through GitLab workflows, testing, and code review.</p>
           <div class="actions"><a class="action" href="#experience">View experience <span aria-hidden="true">↓</span></a><a class="action secondary" href="#projects">View projects <span aria-hidden="true">›</span></a><a class="action secondary" href="#contact">Get in touch <span aria-hidden="true">›</span></a></div>
         </div>
@@ -431,12 +431,12 @@
                   <li>Redirects — GET /{code} returns a 302 through a Redis cache-aside lookup, with a clean 404 for unknown codes.</li>
                   <li>Rate limiting — POST /api/links is limited to 10 requests per minute per IP with Bucket4j; further requests return a 429 with the wait time.</li>
                   <li>Local stack — Postgres 16 and Redis 7 run via Docker Compose, with the app health-checked against both.</li>
+                  <li>Tests &amp; CI — Testcontainers integration tests run against real Postgres 16 and Redis 7, alongside unit tests for rate limiting and base62 encoding; the 7-test suite is green locally and in GitHub Actions CI.</li>
                 </ul>
               </div>
               <div class="build-col planned">
                 <h4>In progress &amp; planned</h4>
                 <ul>
-                  <li>Testcontainers tests against real Postgres and Redis — planned.</li>
                   <li>Load testing and deployment — planned; no benchmarks or live demo yet.</li>
                 </ul>
               </div>
